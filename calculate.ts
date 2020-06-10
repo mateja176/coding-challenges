@@ -1,4 +1,4 @@
-function calculate(equation: string) {
+export function calculate(equation: string): number {
   return equation.split('+').reduce((sum, addend) => {
     const difference = addend
       .split('-')
