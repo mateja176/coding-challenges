@@ -1,3 +1,5 @@
+import { assert } from 'chai';
+
 export function lengthOfLongestSubstring(s: string): number {
   return s.split('').reduce((totalMax, _, i, a) => {
     if (totalMax >= a.length - i) {
@@ -23,16 +25,17 @@ export function lengthOfLongestSubstring(s: string): number {
   }, 0);
 }
 
-console.log(lengthOfLongestSubstring('abcabcbb'));
-console.log(lengthOfLongestSubstring('bbbbb'));
-console.log(lengthOfLongestSubstring('pwwkew'));
-console.log(lengthOfLongestSubstring(' '));
-console.log(lengthOfLongestSubstring('dvdf'));
-console.log(lengthOfLongestSubstring('au'));
-console.log(
+assert.equal(lengthOfLongestSubstring('abcabcbb'), 3);
+assert.equal(lengthOfLongestSubstring('bbbbb'), 1);
+assert.equal(lengthOfLongestSubstring('pwwkew'), 3);
+assert.equal(lengthOfLongestSubstring(' '), 1);
+assert.equal(lengthOfLongestSubstring('dvdf'), 3);
+assert.equal(lengthOfLongestSubstring('au'), 2);
+assert.equal(
   lengthOfLongestSubstring(
     'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ ',
   ),
+  95,
 );
 // console.log(
 //   lengthOfLongestSubstring(
