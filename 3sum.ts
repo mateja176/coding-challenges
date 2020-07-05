@@ -10,9 +10,9 @@ function threeSum(nums: number[]): number[][] {
     .slice(0, -2)
     .forEach((num, i) => {
       if (num !== nums[i - 1]) {
+        const sum = -num;
         let low = i + 1;
         let high = nums.length - 1;
-        const sum = -num;
 
         while (low < high) {
           if (nums[low] + nums[high] === sum) {
