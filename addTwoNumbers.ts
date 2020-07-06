@@ -1,3 +1,5 @@
+export default {};
+
 class ListNodeC {
   val: number;
 
