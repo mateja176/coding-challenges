@@ -30,7 +30,7 @@ function isValid(s: string): boolean {
   );
 }
 
-const parentMapString = {
+const parentMapString: Record<string, string> = {
   ')': '(',
   '}': '{',
   ']': '[',
