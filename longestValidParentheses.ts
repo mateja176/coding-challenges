@@ -11,7 +11,7 @@ const parentMap: Record<string, string> = {
 
 const opening = Object.values(parentMap);
 
-function longestValidParentheses(input: string): number {
+function longestValidParenthesesF(input: string): number {
   const s = input.replace(/^\)/, '').replace(/\($/, '');
   if (s.length <= 1) {
     return 0;
@@ -67,15 +67,54 @@ function longestValidParentheses(input: string): number {
   }
 }
 
+const longestValidParentheses = (s: string): number => {
+  if (s.length <= 1) {
+    return 0;
+  } else {
+    let max = 0;
+    for (let i = 0; i < s.length; i++) {
+      if (max > s.length - i + 1) {
+        break;
+      }
+
+      const stack: string[] = [];
+      let currentMax = 0;
+      let beforeOpening = -1;
+      for (let j = i; j < s.length; j++) {
+        if (s[j] === '(') {
+          if (stack.length === 0) {
+            beforeOpening = j;
+          }
+          stack.push(s[j]);
+          currentMax++;
+        } else if (s[j] === ')' && stack.length) {
+          stack.pop();
+          currentMax++;
+        } else {
+          break;
+        }
+      }
+
+      if (stack.length === 0 && currentMax > max) {
+        max = currentMax;
+      } else if (stack.length > 0 && beforeOpening - i > max) {
+        console.log(i, stack, currentMax, beforeOpening);
+        max = beforeOpening - i;
+      }
+    }
+    return max;
+  }
+};
+
 console.log(longestValidParentheses('()'));
-// console.log(longestValidParentheses('(()'));
-// console.log(longestValidParentheses(')()())'));
+console.log(longestValidParentheses('(()'));
+console.log(longestValidParentheses(')()())'));
 console.log(longestValidParentheses('()('));
 console.log(longestValidParentheses('()(('));
-// console.log(longestValidParentheses('((((()())()()))()(()))'));
-// console.log(longestValidParentheses('(((((()())()()))()(()))'));
-// console.log(longestValidParentheses(')(((((()())()()))()(()))'));
-// console.log(longestValidParentheses(')(((((()())()()))()(()))'));
+console.log(longestValidParentheses('((((()())()()))()(()))'));
+console.log(longestValidParentheses('(((((()())()()))()(()))'));
+console.log(longestValidParentheses(')(((((()())()()))()(()))'));
+console.log(longestValidParentheses(')(((((()())()()))()(()))'));
 console.log(longestValidParentheses(')(((((()())()()))()(()))('));
 console.log(longestValidParentheses('()(()'));
 console.log(longestValidParentheses('()()(()('));
