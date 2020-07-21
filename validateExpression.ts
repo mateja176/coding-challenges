@@ -17,9 +17,18 @@ const validateExpression = (expression: string): boolean => {
     const char = chars[i];
 
     if (digits.includes(char)) {
-      lastToken = char;
+      if (
+        !lastToken ||
+        operators.includes(lastToken) ||
+        digits.includes(lastToken)
+      ) {
+        lastToken = char;
+      } else {
+        isValid = false;
+        break;
+      }
     } else if (operators.includes(char)) {
-      if (digits.includes(lastToken)) {
+      if (digits.includes(lastToken) || lastToken === ')') {
         lastToken = char;
       } else {
         isValid = false;
@@ -30,9 +39,14 @@ const validateExpression = (expression: string): boolean => {
     } else if (')' === char) {
       const last = stack.pop();
 
-      if (last !== '(') {
+      if (operators.includes(lastToken)) {
         isValid = false;
         break;
+      } else if (last !== '(') {
+        isValid = false;
+        break;
+      } else {
+        lastToken = char;
       }
     } else if (char !== ' ') {
       isValid = false;
@@ -80,3 +94,5 @@ console.assert(
   '4 * ((* 3) + 35)',
 );
 console.assert(validateExpression('* 4') === false, '* 4');
+console.assert(validateExpression('()4') === false, '()4');
+console.assert(validateExpression('(1)4') === false, '(1)4');
