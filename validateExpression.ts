@@ -16,31 +16,28 @@ const validateExpression = (expression: string): boolean => {
   for (let i = 0; i < chars.length; i++) {
     const char = chars[i];
 
-    if (char === ' ') {
-      continue;
+    if (digits.includes(char)) {
+      lastToken = char;
     } else if (operators.includes(char)) {
-      if (!digits.includes(lastToken)) {
+      if (digits.includes(lastToken)) {
+        lastToken = char;
+      } else {
         isValid = false;
         break;
       }
     } else if ('(' === char) {
       stack.push(char);
-      continue;
     } else if (')' === char) {
       const last = stack.pop();
 
-      if (last === '(') {
-        continue;
-      } else {
+      if (last !== '(') {
         isValid = false;
         break;
       }
-    } else if (!digits.includes(char)) {
+    } else if (char !== ' ') {
       isValid = false;
       break;
     }
-
-    lastToken = char;
   }
 
   return isValid && stack.length === 0 && !operators.includes(lastToken);
