@@ -45,48 +45,48 @@ const numberOfAmphitheaters = (classes: Class[]): number => {
   }
 };
 
-// console.assert(
-//   numberOfClassrooms([
-//     { start: 10, end: 15 },
-//     { start: 20, end: 30 },
-//   ]) === 1
-// );
-
-// console.assert(
-//   numberOfClassrooms([
-//     { start: 10, end: 25 },
-//     { start: 20, end: 30 },
-//   ]) === 2
-// );
-
-// console.assert(
-//   numberOfClassrooms([
-//     { start: 10, end: 20 },
-//     { start: 30, end: 40 },
-//     { start: 15, end: 25 },
-//   ]) === 2
-// );
-
-// console.assert(
-//   numberOfClassrooms([
-//     { start: 10, end: 25 },
-//     { start: 20, end: 40 },
-//     { start: 35, end: 50 },
-//   ]) === 2
-// );
-
-// console.assert(
-//   numberOfClassrooms([
-//     { start: 0, end: 10 },
-//     { start: 1, end: 11 },
-//     { start: 2, end: 12 },
-//     { start: 12, end: 22 },
-//     { start: 13, end: 23 },
-//   ]) === 3
-// );
+console.assert(
+  numberOfAmphitheaters([
+    { start: 10, end: 15 },
+    { start: 20, end: 30 },
+  ]) === 1
+);
 
 console.assert(
-  numberOfAmphitheatres([
+  numberOfAmphitheaters([
+    { start: 10, end: 25 },
+    { start: 20, end: 30 },
+  ]) === 2
+);
+
+console.assert(
+  numberOfAmphitheaters([
+    { start: 10, end: 20 },
+    { start: 30, end: 40 },
+    { start: 15, end: 25 },
+  ]) === 2
+);
+
+console.assert(
+  numberOfAmphitheaters([
+    { start: 10, end: 25 },
+    { start: 20, end: 40 },
+    { start: 35, end: 50 },
+  ]) === 2
+);
+
+console.assert(
+  numberOfAmphitheaters([
+    { start: 0, end: 10 },
+    { start: 1, end: 11 },
+    { start: 2, end: 12 },
+    { start: 12, end: 22 },
+    { start: 13, end: 23 },
+  ]) === 3
+);
+
+console.assert(
+  numberOfAmphitheaters([
     { start: 0, end: 10 },
     { start: 1, end: 11 },
     { start: 2, end: 12 },
