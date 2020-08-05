@@ -10,7 +10,7 @@ const numberOfClassrooms = (classes: Class[]): number => {
     return 0;
   } else {
     return classes
-      .sort((a, b) => (a.end > b.end ? 1 : -1))
+      .sort((a, b) => a.end - b.end)
       .reduce((total, current, i, a) => {
         const next = a[i + 1];
         if (next) {
@@ -26,14 +26,14 @@ console.assert(
   numberOfClassrooms([
     { start: 10, end: 15 },
     { start: 20, end: 30 },
-  ]) === 1,
+  ]) === 1
 );
 
 console.assert(
   numberOfClassrooms([
     { start: 10, end: 25 },
     { start: 20, end: 30 },
-  ]) === 2,
+  ]) === 2
 );
 
 console.assert(
@@ -41,7 +41,7 @@ console.assert(
     { start: 10, end: 20 },
     { start: 30, end: 40 },
     { start: 15, end: 25 },
-  ]) === 2,
+  ]) === 2
 );
 
 console.assert(
@@ -49,5 +49,5 @@ console.assert(
     { start: 10, end: 25 },
     { start: 20, end: 40 },
     { start: 35, end: 50 },
-  ]) === 3,
+  ]) === 3
 );
